@@ -54,7 +54,7 @@ class Grade(Base):
 
 
 # Database connection
-DATABASE_URL = "postgresql://postgres:mysecretpassword@localhost:5432/postgres"
+DATABASE_URL = "postgresql://postgres:Abc123@localhost:5432/postgres"
 engine = create_engine(DATABASE_URL)
 Base.metadata.create_all(engine)
 
