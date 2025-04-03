@@ -1,6 +1,10 @@
+import os
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Date
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
+from dotenv import load_dotenv
+
+load_dotenv()
 
 Base = declarative_base()
 
@@ -52,9 +56,7 @@ class Grade(Base):
     student = relationship("Student", back_populates="grades")
     subject = relationship("Subject", back_populates="grades")
 
-
-# Database connection
-DATABASE_URL = "postgresql://postgres:Abc123@localhost:5432/postgres"
+DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL)
 Base.metadata.create_all(engine)
 
