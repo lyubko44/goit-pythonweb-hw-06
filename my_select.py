@@ -1,6 +1,7 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import func, desc
-from models import engine, Student, Group, Teacher, Subject, Grade
+from db import engine
+from models import Student, Group, Teacher, Subject, Grade
 
 Session = sessionmaker(bind=engine)
 session = Session()

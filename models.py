@@ -1,13 +1,6 @@
-import os
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Date
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker
-from dotenv import load_dotenv
-
-load_dotenv()
-
-Base = declarative_base()
-
+from sqlalchemy import Column, Integer, String, ForeignKey, Date
+from sqlalchemy.orm import relationship
+from db import Base, engine
 
 class Student(Base):
     __tablename__ = "students"
@@ -56,10 +49,4 @@ class Grade(Base):
     student = relationship("Student", back_populates="grades")
     subject = relationship("Subject", back_populates="grades")
 
-DATABASE_URL = os.getenv("DATABASE_URL")
-engine = create_engine(DATABASE_URL)
 Base.metadata.create_all(engine)
-
-# Create a new session
-Session = sessionmaker(bind=engine)
-session = Session()
